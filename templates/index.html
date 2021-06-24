@@ -1,0 +1,84 @@
+
+
+<!DOCTYPE html>
+<html>
+	<title>Ariel Super Admin</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<style>
+	html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
+	.grab {cursor: -webkit-grab; cursor: grab;}
+	</style>
+	<body class="w3-light-grey" style="color: white;">
+		<div class="w3-container" style="background-color: black;color: white;">
+			<div class="w3-bar w3-black">
+				<button style="background-color: darkslategray;color: #db8a71;" onclick="get_connected_app()">Connected App</button>
+				<button style="float:right;background-color: darkslategray;color: #db8a71;" onclick="get_connected_app()">Configure Field Mappings</button>
+			</div>
+
+			<div>
+				<div>
+					<h1 style="float: right;">Free Data Health Scan</h1>
+					<table>
+						<tr>
+							<th>Consumer Key</th><td><input style="width: 300px; background-color: darkslategray; color: chartreuse;" type="" name="" value="3MVG9Nk1FpUrSQHdvT4riecoT54Pk47hzzVP.WtBJaJ.8tZopDWsIuk12p45lTdtLfB8WaBIt_BTA4g78kvjS"></td>
+						</tr>
+						<tr>
+							<th>Client Secret</th><td><input style="width:300px; background-color: darkslategray;color: chartreuse; 300px;" type="" name="" value="8C059382F620317BE631CFE64E7B5598B927801A04C0F105686351BFE882832A"></td>
+						</tr>
+						<tr>
+							<th><a href="/get_connected_app_url">Authenticate</a></th>
+						</tr>
+					</table>
+				</br></br>
+
+					<table class="w3-table w3-table-all" style="color: chartreuse;">
+						<tr style="background-color: black;">
+							<th>Id</th>
+							<th>Name</th>
+							<th>Account Name</th>
+							<th>Email</th>
+							<th>Match</th>
+							<th>Push</th>
+						</tr>
+						{% for recs in data %}
+							<tr style="background-color: black;">
+								<td>{{recs.Id}}</td>
+								<td>{{recs.Name}}</td>
+								<td>{{recs.Account.Name}}</td>
+								<td>{{recs.Email}}</td>
+								<td>None</td>
+								<td><span id="{{recs.Id}}" data-record="{{recs.Id}}" onclick="pushBack(this)"><p class="grab"><i class="w3-spin fa fa-refresh"></i></p></button></td>
+							</tr>
+						{% endfor %}
+						
+					</table>
+					<div>
+						<button class="w3-button w3-teal">Bulk Push</button>
+					</div>
+
+				</div>
+
+			</div>
+			<div id="id01" class="w3-modal">
+				<div class="w3-modal-content" style="width: 408px;height: 143px;background-color: black;color: chartreuse;margin-top: 202px;">
+				  <div class="w3-container">
+				  	
+				    <div class="w3-row">
+				    	<p id="id01_container">
+				    		
+				    	</p>
+				    </div>
+				    <div class="w3-bar w3-black">
+				    	<button onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-teal" style="float: right;">&times;</buttom>
+				    </div>
+				  </div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="{{url_for('static', filename="js/app.js")}}"></script>
+</html>
